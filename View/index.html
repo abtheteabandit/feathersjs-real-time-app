@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Livestream Comments Demo</title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+    <div id="page-content">
+        <form id="form">
+            <input 
+                type="text"
+                id="comment-text"
+                placeholder="enter a comment (30 characters max)"
+                maxlength="30"
+                required
+            />
+            <input 
+                type="text"
+                id="comment-tag"
+                placeholder="enter a tag (30 characters max)"
+                maxlength="30"
+                required
+            />
+            <input 
+                type="text"
+                id="comment-viewer"
+                placeholder="enter your name"
+                maxlength="30"
+                required
+            />
+            <button type=submit>
+                Comment
+            </button>
+        </form>
+        <div id="comments">
+
+        </div>
+    </div>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.6.9/core.min.js"></script>
+    <script src="//unpkg.com/@feathersjs/client@^3.0.0/dist/feathers.js"></script>
+    <script src="//unpkg.com/socket.io-client@1.7.3/dist/socket.io.js"></script>
+    <script>
+        const socket = io('http://localhost:3030'); // set up socket.io
+        const app = feathers(); // init app
+        app.configure(feathers.socketio(socket)); // register socket io to talk to server
+
+
+        document.getElementById('form').addEventListener('submit',sendComment);
+
+        async function sendComment(e){
+            e.preventDefault();
+            const text = document.getElementById('comment-text').value;
+            const tag = document.getElementById('comment-tag').value;
+            const viewer = document.getElementById('comment-viewer').value;
+
+            //create new comment
+            app.service('comments').create({
+                text: text,
+                tag: tag,
+                viewer: viewer,
+            });
+
+            document.getElementById('comment-text').value = '';
+            document.getElementById('comment-tag').value = '';
+            document.getElementById('comment-viewer').value = '';
+        }
+        function renderComment(comment){
+            console.log('comment: ');
+            console.log(comment);
+            document.getElementById('comments').innerHTML += 
+            `
+            <div class="comment-container">
+                <p>${comment.text}</p>
+                <p>${comment.tag}</p>
+                <p>${comment.viewer}</p>
+                <p>${comment.time}</p>
+            </div>
+            `
+        }
+        async function init(){
+            const comments = await app.service('comments').find();
+            comments.forEach(renderComment);
+            app.service('comments').on('created',renderComment);
+        }
+        init();
+
+    </script>
+</body>
+</html>

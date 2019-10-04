@@ -18,9 +18,11 @@
   },
   "homepage": "https://github.com/abtheteabandit/feathersjs-real-time-app#readme",
   "dependencies": {
+    "@feathersjs/client": "^4.3.4",
     "@feathersjs/express": "^4.3.4",
     "@feathersjs/feathers": "^4.3.4",
     "@feathersjs/socketio": "^4.3.4",
+    "@feathersjs/socketio-client": "^4.3.4",
     "moment": "^2.24.0"
   }
 }

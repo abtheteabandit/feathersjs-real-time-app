@@ -1,0 +1,67 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    color: white;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(20,20,20,1);
+}
+
+#page-content{
+    padding-top: 100px;
+    display: grid;
+    align-items: baseline;
+    grid-template-columns: auto auto;
+}
+
+#form{
+    padding: 20px;
+    width: 400px;
+    margin: 0 auto;
+}
+
+button{
+    cursor: pointer;
+    display: block;
+}
+
+input[type=text]{
+    display: block;
+    background-color: transparent;
+    border: 1px solid white;
+    border-radius: 18px;
+    margin: 10px auto;
+    height: 40px;
+    font-size: 14px;
+    padding: 0px 10px;
+    width: 300px;
+    color: white;
+}
+
+button{
+    display: block;
+    width: 300px;
+    color: black;
+    border: none;
+    background-color: white;
+    height: 50px;
+    border-radius: 25px;
+    margin: 10px auto;
+}
+
+#comments{
+    width: 400px;
+}
+
+.comment-container{
+    text-align: center;
+    width: 300px;
+    color: white;
+    padding: 20px;
+    background-color: rgba(4,4,4,1);
+    border-radius: 8px;
+    margin: 20px auto;
+}
