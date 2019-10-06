@@ -10,8 +10,17 @@ body{
     background-color: rgba(20,20,20,1);
 }
 
+h1{
+    text-align: center;
+    padding-top: 80px;
+}
+
+h2{
+    text-align: center;
+}
+
 #page-content{
-    padding-top: 100px;
+    padding-top: 20px;
     display: grid;
     align-items: baseline;
     grid-template-columns: auto auto;
