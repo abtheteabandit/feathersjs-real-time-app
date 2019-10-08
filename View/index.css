@@ -55,7 +55,9 @@ button{
     width: 300px;
     color: black;
     border: none;
-    background-color: white;
+    background: linear-gradient(31deg, #4B367C 0%, #0F9BD8 100%);
+    color: white;
+    font-weight: 700;
     height: 50px;
     border-radius: 25px;
     margin: 10px auto;
